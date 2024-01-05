@@ -2,15 +2,15 @@
 from jenkins/jenkins:2.361.4
 USER root
 # Pipeline
-RUN /usr/local/bin/install-plugins.sh workflow-aggregator && \
-    /usr/local/bin/install-plugins.sh github && \
-    /usr/local/bin/install-plugins.sh ws-cleanup && \
-    /usr/local/bin/install-plugins.sh greenballs && \
-    /usr/local/bin/install-plugins.sh simple-theme-plugin && \
-    /usr/local/bin/install-plugins.sh kubernetes && \
-    /usr/local/bin/install-plugins.sh docker-workflow && \
-    /usr/local/bin/install-plugins.sh kubernetes-cli && \
-    /usr/local/bin/install-plugins.sh github-branch-source
+RUN jenkins-plugin-cli --plugins "workflow-aggregator" && \
+    jenkins-plugin-cli --plugins "github" && \
+    jenkins-plugin-cli --plugins "ws-cleanup" && \
+    jenkins-plugin-cli --plugins "greenballs" && \
+    jenkins-plugin-cli --plugins "simple-theme-plugin" && \
+    jenkins-plugin-cli --plugins "kubernetes" && \
+    jenkins-plugin-cli --plugins "docker-workflow" && \
+    jenkins-plugin-cli --plugins "kubernetes-cli" && \
+    jenkins-plugin-cli --plugins "github-branch-source"
 
 # install Maven, Java, Docker, AWS
 RUN apk add --no-cache maven \
